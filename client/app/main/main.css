@@ -31,7 +31,7 @@
 
 
 
-.btn {
+.my-button{
   -webkit-border-radius: 32;
   -moz-border-radius: 32;
   border-radius: 32px;
@@ -48,7 +48,7 @@
   text-decoration: none;
 }
 
-.btn:hover {
+.my-button:hover {
   background: #84c2e8;
   background-image: -webkit-linear-gradient(top, #84c2e8, #0e3eed);
   background-image: -moz-linear-gradient(top, #84c2e8, #0e3eed);

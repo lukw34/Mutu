@@ -5,6 +5,6 @@ angular.module('myMutuApp')
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MutuCtrl'
       });
   });

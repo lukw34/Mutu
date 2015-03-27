@@ -1,20 +1,37 @@
 <header class="hero-unit" id="banner">
   <div class="container">
     <h1>Projekt Mutu</h1>
+
     <p class="lead">Miło nam, że chcesz wziąc udział w eksperymencie!</p>
-      </div>
+  </div>
 </header>
+<br/>
+</div>
 <div class="container">
+  <center>
+    <input ng-model="query.groupName" ng-model="addGroup()" class="form-control input-lg text-center" placeholder="Aby zacząć podaj swoją grupe dziekańską">
+    <br/>
+    <button ng-show="group.length" class="my-button">Rozpocznij Ankiete!!!</button>
+  </center>
   <br/>
-  <center>  <button class="btn ">Rozpocznij Ankiete!!!</button></center>
-  <br/>
+  {{guery.groupeName}}
   <p>Ankieta, którą wypełniasz, jest elementem badań prowadzonych przez nas w dwóch celach:</p>
   <ul>
-    <li>pragniemy przetestować możliwość oceny zajęć dydaktycznych w formie swobodnych opinii zamiast obecnie stosowanych kryteriów punktowych;</li>
+    <li>pragniemy przetestować możliwość oceny zajęć dydaktycznych w formie swobodnych opinii zamiast obecnie
+      stosowanych kryteriów punktowych;
+    </li>
     <li>chcemy sprawdzić, czy możliwa jest automatyczna analiza takich opinii przy pomocy systemu komputerowego</li>
   </ul>
-  <p>Jeżeli ten oraz inne planowane przez nas eksperymanty dostarczą pozytywnych rezultatów, będzie, będzie to motywacją do podjęcia prób stworzenia nowego systemu oceniania zajęć dydaktycznych - moga na tym skorzystać wszyscy studenci, a więc także i Ty.</p>
-  <p>Dlatego prosimy o wypełnienie ankiety dokładnie w taki sposób, jakby to był oficjalny system oceny zajęć. Pisz swobodnie, w swoim stylu, nie namyślaj się długo, nie staraj się nadmiernie o obiektywność, używaj takich słów, jakie przychodzą Ci na myśl, nie wstydź się wyrażać pochlebinie lub krytycznie - nawet możesz napisać opinie złośliwe i tendencyjne.</p>
-  <p>Ankieta jest cąłkowicie anonimowa, nie korzystamy z żadnych internetowych technik śledzenia użytkowników, nie pytamy też o obecność na zajęciach czy średnią ocen. W istocie ankieta składa się tylko z jednego wyboru i dwóch pól tekstowych, a jej wypełnienie powinno zająć około 5 minut.</p>
-</div>
+  <p>Jeżeli ten oraz inne planowane przez nas eksperymanty dostarczą pozytywnych rezultatów, będzie, będzie to motywacją
+    do podjęcia prób stworzenia nowego systemu oceniania zajęć dydaktycznych - moga na tym skorzystać wszyscy studenci,
+    a więc także i Ty.</p>
+
+  <p>Dlatego prosimy o wypełnienie ankiety dokładnie w taki sposób, jakby to był oficjalny system oceny zajęć. Pisz
+    swobodnie, w swoim stylu, nie namyślaj się długo, nie staraj się nadmiernie o obiektywność, używaj takich słów,
+    jakie przychodzą Ci na myśl, nie wstydź się wyrażać pochlebinie lub krytycznie - nawet możesz napisać opinie
+    złośliwe i tendencyjne.</p>
+
+  <p>Ankieta jest cąłkowicie anonimowa, nie korzystamy z żadnych internetowych technik śledzenia użytkowników, nie
+    pytamy też o obecność na zajęciach czy średnią ocen. W istocie ankieta składa się tylko z jednego wyboru i dwóch pól
+    tekstowych, a jej wypełnienie powinno zająć około 5 minut.</p>
 </div>
