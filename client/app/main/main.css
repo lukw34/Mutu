@@ -57,3 +57,14 @@
   background-image: linear-gradient(to bottom, #84c2e8, #0e3eed);
   text-decoration: none;
 }
+
+.boxme.ng-hide-add {
+  -webkit-animation: fadeOutLeftBig 0.4s;
+  display: block!important;
+}
+.boxme.ng-hide-remove {
+  -webkit-animation: fadeInLeftBig 0.4s;
+}
+
+
+

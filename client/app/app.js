@@ -6,7 +6,8 @@ angular.module('myMutuApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'
@@ -15,8 +16,23 @@ angular.module('myMutuApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
+/*
+  .factory('mutuService', function() {
+    var lectures = ['wykłady z TPI, ćwiczenia z TPI'];
+    var showStep1 = true;
+    var showStep2 = false;
+    var showStep3 = false;
+    var endStep = false;
+    return {
+      opinionsNF:function(){
 
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+      }
+    }
+  });
+*/
+
+
+ /* .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
@@ -28,8 +44,8 @@ angular.module('myMutuApp', [
       },
 
       // Intercept 401s and redirect you to login
-      responseError: function(response) {
-        if(response.status === 401) {
+      responseError: function (response) {
+        if (response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
           $cookieStore.remove('token');
@@ -45,10 +61,11 @@ angular.module('myMutuApp', [
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
-      Auth.isLoggedInAsync(function(loggedIn) {
+      Auth.isLoggedInAsync(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }
       });
     });
   });
+*/

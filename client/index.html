@@ -21,14 +21,27 @@
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
-      <link rel="stylesheet" href="app/account/login/login.css">
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/koniecAnkiety/koniecAnkiety.css">
       <link rel="stylesheet" href="app/main/main.css">
-      <link rel="stylesheet" href="app/start/start.css">
+      <link rel="stylesheet" href="app/wariantNF/wariantNF.css">
+      <link rel="stylesheet" href="app/wariantNT/wariantNT.css">
+      <link rel="stylesheet" href="app/wariantPF/wariantPF.css">
+      <link rel="stylesheet" href="app/wariantPT/wariantPT.css">
+      <link rel="stylesheet" href="app/wariantX/wariantX.css">
+      <link rel="stylesheet" href="app/warianty/warianty.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
   <body ng-app="myMutuApp">
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Projekt Mutu</h1>
+
+      <p class="lead">Miło nam, że chcesz wziąc udział w eksperymencie!</p>
+    </div>
+  </header>
+  <br/>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -66,14 +79,19 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
-          <script src="app/account/account.js"></script>
-          <script src="app/account/login/login.controller.js"></script>
-          <script src="app/account/settings/settings.controller.js"></script>
-          <script src="app/account/signup/signup.controller.js"></script>
+          <script src="app/koniecAnkiety/koniecAnkiety.directive.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
-          <script src="app/start/start.controller.js"></script>
-          <script src="app/start/start.js"></script>
+          <script src="app/wariantNF/wariantNF.controller.js"></script>
+          <script src="app/wariantNF/wariantNF.js"></script>
+          <script src="app/wariantNT/wariantNT.controller.js"></script>
+          <script src="app/wariantNT/wariantNT.js"></script>
+          <script src="app/wariantPF/wariantPF.controller.js"></script>
+          <script src="app/wariantPF/wariantPF.js"></script>
+          <script src="app/wariantPT/wariantPT.controller.js"></script>
+          <script src="app/wariantPT/wariantPT.js"></script>
+          <script src="app/wariantX/wariantX.controller.js"></script>
+          <script src="app/wariantX/wariantX.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
