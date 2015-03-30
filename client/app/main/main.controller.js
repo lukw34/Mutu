@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myMutuApp')
-  .controller('MutuCtrl', function ($scope, $location) {
+  .controller('MutuCtrl',['$scope', '$location', 'mutuService', function ($scope, $location, mutuService) {
   $scope.query = { //zapytanie do bazy danych
     groupName: ""
    };
@@ -28,6 +28,7 @@ angular.module('myMutuApp')
         url: $scope.links[$scope.myrandom].url
       };
       $scope.myVariant = $scope.variant;
+      mutuService.pushKindOfOpinion($scope.myVariant.name);
       };
 
 
@@ -63,4 +64,4 @@ angular.module('myMutuApp')
     //  }
     //};
 
-  });
+  }]);

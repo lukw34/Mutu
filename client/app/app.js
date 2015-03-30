@@ -16,23 +16,8 @@ angular.module('myMutuApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
-/*
-  .factory('mutuService', function() {
-    var lectures = ['wykłady z TPI, ćwiczenia z TPI'];
-    var showStep1 = true;
-    var showStep2 = false;
-    var showStep3 = false;
-    var endStep = false;
-    return {
-      opinionsNF:function(){
 
-      }
-    }
-  });
-*/
-
-
- /* .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+ .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
@@ -58,6 +43,7 @@ angular.module('myMutuApp', [
     };
   })
 
+
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
@@ -68,4 +54,4 @@ angular.module('myMutuApp', [
       });
     });
   });
-*/
+

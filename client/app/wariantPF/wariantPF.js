@@ -5,6 +5,6 @@ angular.module('myMutuApp')
     $routeProvider
       .when('/wariantPF', {
         templateUrl: 'app/wariantPF/wariantPF.html',
-        controller: 'WariantPFCtrl'
+        controller: 'VariantsCtrlCtrl'
       });
   });

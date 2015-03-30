@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: WariantPFCtrl', function () {
+describe('Controller: VariantsCtrlCtrl', function () {
 
   // load the controller's module
   beforeEach(module('myMutuApp'));
 
-  var WariantPFCtrl, scope;
+  var VariantsCtrlCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    WariantPFCtrl = $controller('WariantPFCtrl', {
+    VariantsCtrlCtrl = $controller('VariantsCtrlCtrl', {
       $scope: scope
     });
   }));

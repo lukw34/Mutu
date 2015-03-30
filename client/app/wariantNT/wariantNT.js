@@ -5,6 +5,6 @@ angular.module('myMutuApp')
     $routeProvider
       .when('/wariantNT', {
         templateUrl: 'app/wariantNT/wariantNT.html',
-        controller: 'WariantNFCtrl'
+        controller: 'VariantsCtrlCtrl'
       });
   });
