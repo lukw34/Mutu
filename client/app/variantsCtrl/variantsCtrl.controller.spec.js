@@ -15,7 +15,8 @@ describe('Controller: VariantsCtrlCtrl', function () {
     });
   }));
 
-  it('should ...', function () {
+  it('sho.', function () {
     expect(1).toEqual(1);
   });
+
 });

@@ -1,15 +1,16 @@
 <div class="container">
   <center>
-    <input ng-model="query.groupName" type="text" class="form-control input-lg text-center"
-           placeholder="Aby zacząć podaj swoją grupe dziekańską">
+    <input ng-if = "groups" ng-model="query.groupName" type="text" class="form-control input-lg text-center"
+           placeholder="Aby zacząć podaj swoją grupe dziekańską" ng-keyup="validateGroupName()">
     <br/>
-    <button ng-show="query.groupName.length" ng-click="startSurvey()"  class="my-button">Rozpocznij
+    <button ng-if="!disabled" ng-click="startSurvey()"  class="my-button">Rozpocznij
       Ankiete!!!
     </button>
   </center>
-
    <br/>
-
+<div ng-repeat = "mlecture in lectures">
+  {{mlecture}} <br/>
+</div>
   <div class="container">
   <p>Ankieta, którą wypełniasz, jest elementem badań prowadzonych przez nas w dwóch celach:</p>
   <ul>

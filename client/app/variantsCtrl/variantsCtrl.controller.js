@@ -1,53 +1,50 @@
 'use strict';
-
 angular.module('myMutuApp')
-  .controller('VariantsCtrlCtrl',['$scope','mutuService', function ($scope, mutuService) {
-    $scope.lectures = ['wykład z Tpi', 'wF', 'matma'];
+  .controller('VariantsCtrlCtrl', ['$log', '$http', '$scope', 'mutuService', function ($log, $http, $scope, mutuService) {
+    //$scope.lectures = mutuService.getLecture();
+    $scope.lectures = [];
     $scope.myOpinion = {
-      lecture:"",
-      firstOpinion:"",
-      secondOpinion:""
+      lecture: "",
+      firstOpinion: "",
+      secondOpinion: ""
     };
-    $scope.opinionsNF = [];
-    $scope.opinionsNT = [];
-    $scope.opinionsPF = [];
-    $scope.opinionsPT = [];
-    $scope.opinionsX = [];
-    $scope.kindOfOpinion = mutuService.getKindOfOpinion();
-    $scope.pushOpinion = function () {
-      if($scope.kindOfOpinion === 'wariantNT') {
-        return $scope.opinionsNT;
-      }
-      if($scope.kindOfOpinion === 'wariantNF') {
-        return $scope.opinionsNF;
-      }
-      if($scope.kindOfOpinion === 'wariantPF') {
-        return $scope.opinionsPF;
-      }
-      if($scope.kindOfOpinion === 'wariantPT') {
-        return $scope.opinionsPT;
-      }
-      if($scope.kindOfOpinion === 'wariantX') {
-        return $scope.opinionsX;
-      }
+    $scope.step = 1;
 
+    $http.get('api/lectures')
+      .success(function (data) {
+        $scope.lectures = data;
+        console.log('Pobrałem liste zajęć!!', data);
+      }).error(function () {
+        alert("Error");
+      });
+
+    $scope.addOpinions = function () {
+      $http.post("api/opinionss", angular.copy(mutuService.getOpinions()))
+        .success(function (data) {
+          $log.log(data);
+          console.log('Dodałem opinie ', data)
+        }).error(function (data) {
+          console.log(data, 'Can not write to database!');
+        });
+      $log.log(mutuService.getOpinions());
     };
-    $scope.showStep1 = true;
-    $scope.showStep2 = false;
-    $scope.showStep3 = false;
-    $scope.end = false;
-    $scope.addLecture = function(myLecture) {
-      $scope.myOpinion.lecture = myLecture;
-      $scope. showStep1 = false;
-      $scope.showStep2 = true;
+
+
+    $scope.addLecture = function (myLecture) {
+      $scope.step = 2;
+      $scope.myOpinion.lecture = myLecture.name + '[' + myLecture.categoryName + ']';
     };
+
     $scope.addFirstOpinion = function () {
-      $scope.showStep2 = false;
-      $scope.showStep3 = true;
+      $scope.step = 3;
     };
+
     $scope.addSecondOpinion = function () {
-      $scope.showStep3 = false;
-      $scope.end = true;
-      $scope.pushOpinion().push($scope.myOpinion);
+      $scope.step = 'end';
+      mutuService.pushOpinion($scope.myOpinion.lecture, $scope.myOpinion.firstOpinion, $scope.myOpinion.secondOpinion);
+      $scope.addOpinions();
     };
+
+
   }]);
+
