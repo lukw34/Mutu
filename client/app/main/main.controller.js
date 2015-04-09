@@ -5,6 +5,8 @@ angular.module('myMutuApp')
     $scope.query = { //zapytanie do bazy danych
       groupName: ''
     };
+    $scope.groupLectures = {};
+    $scope.groupId;
     $scope.groups = [];
     $scope.disabled = true;
     $scope.timetable = [];
@@ -48,20 +50,28 @@ angular.module('myMutuApp')
           name: $scope.timetable[i].name,
           categoryName: $scope.timetable[i].category_name
         };
-        $http.post('api/lectures', angular.copy($scope.lecture))
-          .success(function(data) {
-            $log.log(data);
-            console.log ('Przesłano zajęcia: ', data);
-          }).error(function() {
-            alert('Bład przy przesyłaniu zajęc');
-          });
+        $scope.lectures.push($scope.lecture);
       }
+
+      $scope.groupLectures = {
+        groupId: $scope.groupId,
+        lecture: $scope.lectures
+      };
+
+      $http.post('api/lectures', angular.copy($scope.groupLectures))
+        .success(function(data) {
+          $log.log(data);
+          console.log ('Przesłano zajęcia: ', data);
+        }).error(function() {
+          alert('Bład przy przesyłaniu zajęc');
+        });
     };
 
     $scope.getTimetable = function (id) {
       $http.get('http://devplan.uek.krakow.pl/api/timetables/g' + id)
         .success(function (data) {
           $scope.timetable = data.activities;
+
           console.log('Podział został pobrany', data);
           $scope.sendData();
         }).error(function () {
@@ -74,6 +84,7 @@ angular.module('myMutuApp')
       for (var i = 0; i < $scope.groups.length; i++) {
         if ($scope.groups[i].name.toLowerCase() == $scope.query.groupName.toLowerCase() ) {
           console.log($scope.groups[i].id);
+          $scope.groupId = $scope.groups[i].id;
           $scope.getTimetable($scope.groups[i].id);
           $scope.disabled = false;
         }

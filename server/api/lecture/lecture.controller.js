@@ -24,6 +24,37 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Lecture.create(req.body, function(err, lecture) {
     if(err) { return handleError(res, err); }
+
+    var validLecture = {};
+    var finalLecture = [];
+    var candidates = lecture.lectures;
+
+    var checkDuplicate = function (candidate, mlecture) {
+      return(candidate.name === mlecture.name || candidate.categoryName === mlecture.categoryName)
+    };
+
+    var validateType = function (candidate) {
+      return (candidate.categoryName == 'wykład' || candidate.categoryName == 'ćwiczenia');
+    };
+
+    for (var i = 0; i < candidates.length; i++) {
+      if(validateType(candidates[i])) {
+        validLecture = {
+          name: candidates[i].name,
+          categoryName: candidates[i].categoryName
+        };
+        for (var j = 0; j < finalLecture.length; j++) {
+          if(checkDuplicate(candidates[i], finalLecture[j])) {
+            validLecture = null;
+            break
+          }
+        }
+        if (validLecture) {
+          finalLecture.push(validLecture);
+        }
+      }
+    }
+    lecture.lectures = finalLecture;
     return res.json(201, lecture);
   });
 };
