@@ -5,7 +5,7 @@ angular.module('myMutuApp')
     /*
      zapytanie do bazy danych
      */
-    $scope.groupLectures;
+    $scope.groupLectures = {};
 
     $scope.query = {
       groupName: ''
@@ -13,7 +13,7 @@ angular.module('myMutuApp')
     /*
      Przechowywanie id grupy {String}
      */
-    $scope.groupId;
+    $scope.groupId = '';
     /*
      Grupy pobrane z devplanu
      */
@@ -58,68 +58,97 @@ angular.module('myMutuApp')
      */
     $http.get('http://devplan.uek.krakow.pl/api/groups')
       .success(function (data) {
-        $scope.groups =data;
+        $scope.groups = data;
         console.log('Group was downloaded.', data);
       }).error(function () {
         alert('Check your internet connection');
       });
 
     /*
-    Funkcja wysyłajaca id grupy oraz wyodrebnione z $scope.timetable  zajecia z ich typami do bazy danych
+     Funkcja wysyłajaca id grupy oraz wyodrebnione z $scope.timetable  zajecia z ich typami do bazy danych
      */
 
     /*
-    TODO: Rozwązac problem zwiazany z przypisywaniem jednego i tego samego do tablicy lectures
+     TODO: Rozwązac problem zwiazany z przypisywaniem jednego i tego samego do tablicy lectures
      */
 
     $scope.sendData = function () {
 
-      //Pusty obiekt zawierajacy dane ktore powinny zostac przezlłane do bazy danych
-      var groupLectures = {
-        groupId: '',
-        lectures: []
-        };
-      //Obiekt zawierajacy zajecia i ich typ
-      var lecture = {
-          name:'',
-          categoryName:""
-      };
-
-      for (var i = 0; i < $scope.timetable.length; i++) {
-        lecture.name = $scope.timetable[i].name;
-        lecture.categoryName = $scope.timetable[i].category_name
-        groupLectures.lectures.push(lecture);
+      //konstruktor do obiektu zawierajacego zajecia i ich typ
+      function Lecture(name, categoryName) {
+        this.name = name;
+        this.categoryName = categoryName;
       }
 
+      //funkcja sprawdzajaca czy wystepuja duplikaty
+      var checkingDuplicate = function (element, candidate) {
+        return element.name == candidate.name && element.categoryName == candidate.categoryName;
+      };
 
-      groupLectures.groupId =$scope.groupId;
+      var duplicatedElement;
+
+      //Pusty obiekt zawierajacy dane ktore powinny zostac przezlłane do bazy danych
+      var groupLectures = {
+        _id: '',
+        lectures: []
+      };
+      var lecture;
+
+      for (var i = 0; i < $scope.timetable.length; i++) {
+        duplicatedElement = false;
+        lecture = new Lecture($scope.timetable[i].name, $scope.timetable[i].category_name);
+
+        for(var j = 0; j < groupLectures.lectures.length; j ++) {
+          if (checkingDuplicate(groupLectures.lectures[j], lecture)) {
+            duplicatedElement = true;
+          }
+        }
+
+        if (!duplicatedElement) {
+          groupLectures.lectures.push(lecture);
+        }
+
+      }
+      /*
+      Dodanie lektoratów z  języka nagielskiego
+       */
+      var angLecture = {
+        name: 'Język Angielski',
+        categoryName: 'lektorat'
+      };
+      groupLectures.lectures.push(angLecture);
+
+      groupLectures._id = $scope.groupId;
+
       $scope.groupLectures = groupLectures;
-       //wysyłanie danych do bazy dany
+
+      //wysyłanie danych do bazy dany
       $http.post('api/lectures', angular.copy(groupLectures))
         .success(function (data) {
           $log.log(data);
+          data._id = $scope.groupId;
           console.log('Lectures was send: ', data);
         }).error(function () {
-          alert('Can not send lectures !!');
+          console.log('Can not send lectures or they are in DB');
         });
     };
 
     /*
-    Funkcja pobierajaca plan grupy przy uzyciu id
+     Funkcja pobierajaca plan grupy przy uzyciu id
      */
     $scope.getTimetable = function (id) {
       $http.get('http://devplan.uek.krakow.pl/api/timetables/g' + id)
         .success(function (data) {
           $scope.timetable = data.activities;
-          console.log('Podział został pobrany', data);
+          console.log('Timetable was downloaded', data);
           $scope.sendData();
         }).error(function () {
-          alert('Wystąpił błąd podczas zapytania, sprawdź połączenie internetowe i odśwież strone.');
+          alert('Check your internet connection and refresh page.');
         });
     };
 
     /*
-    Sprawdzanie czy wpisana grupa znajduje sie w grupach pobranych prze $scope.grtTimetable
+     Sprawdzanie czy wpisana grupa znajduje sie w grupach pobranych prze $scope.grtTimetable
      */
     $scope.validateGroupName = function () {
       for (var i = 0; i < $scope.groups.length; i++) {
@@ -128,16 +157,17 @@ angular.module('myMutuApp')
           $scope.groupId = $scope.groups[i].id;
           $scope.getTimetable($scope.groups[i].id);
           $scope.disabled = false;
+          break;
         }
       }
     };
 
     /*
-    Funkcja losująca wariant i rozpoczynająca ankiete
+     Funkcja losująca wariant i rozpoczynająca ankiete
      */
     $scope.startSurvey = function () {
       $scope.variantDraw();
-      mutuService.pushTypeAndLecture($scope.myVariant.name, $scope.lecture);
+      mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
       $location.path($scope.myVariant.url);
     };
 

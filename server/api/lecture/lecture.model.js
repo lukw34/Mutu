@@ -4,12 +4,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var OneLecture = new Schema({
-  name: String,
-  categoryName: String
+  name: {type: String,  unique: true},
+  categoryName: {type: String,  unique: true}
 });
 
 var LectureSchema = new Schema({
-    groupId: {type: String},
+    _id: {type: String, unique: true, required: true},
     lectures: [OneLecture]
 });
 

@@ -1,5 +1,7 @@
 'use strict';
-
+/*
+MutuService connect variantsCtrl and main.controller
+ */
 angular.module('myMutuApp')
   .service('mutuService', function () {
     var opinion = {
@@ -8,20 +10,22 @@ angular.module('myMutuApp')
       firstOpinion:"",
       secondOpinion:""
     };
-    var lectures = [];
+
+    var groupId;
 
     return {
+
       getOpinions: function () {
         return opinion;
       },
 
-      getLecture: function () {
-        return lectures;
+      getGroupId: function () {
+        return groupId;
       },
 
-      pushTypeAndLecture: function (type, lecture) {
+      pushTypeAndGroup: function (type, lecture) {
         opinion.type = type;
-        lectures = lecture;
+        groupId = lecture;
       },
 
       pushOpinion: function (lecture, myOpinion1, myOpinion2) {

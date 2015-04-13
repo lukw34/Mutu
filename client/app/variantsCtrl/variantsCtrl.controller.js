@@ -2,11 +2,11 @@
 angular.module('myMutuApp')
   .controller('VariantsCtrlCtrl', ['$log', '$http', '$scope', 'mutuService', function ($log, $http, $scope, mutuService) {
     /*
-    Tablica przechowująca  liste zajęć
+     Tablica przechowująca  liste zajęć
      */
     $scope.lectures = [];
     /*
-    Opiekt przechowujący opinie
+     Opiekt przechowujący opinie
      */
     $scope.myOpinion = {
       lecture: "",
@@ -14,52 +14,56 @@ angular.module('myMutuApp')
       secondOpinion: ""
     };
     /*
-    zmienna pokazujaca etap na jakim jest nakieta
+     zmienna przechowujaca id grupy
+     */
+    $scope.groupId = mutuService.getGroupId();
+    /*
+     zmienna pokazujaca etap na jakim jest nakieta
      */
     $scope.step = 1;
 
     /*
-    Pobieranie listy zajec z bazy danych
+     Pobieranie listy zajec z bazy danych
      */
-    $http.get('api/lectures')
+    $http.get('api/lectures/' + $scope.groupId)
       .success(function (data) {
         $scope.lectures = data.lectures;
-        console.log('Pobrałem liste zajęć!!', data);
+        console.log('List of lecture was downloaded !!', data);
       }).error(function () {
-        alert("Error");
+        alert("Check your internet connection !!");
       });
 
-  /*
-    Funkcja przesyłajaca opinie do bazy danych
-  */
+    /*
+     Funkcja przesyłajaca opinie do bazy danych
+     */
     $scope.addOpinions = function () {
       $http.post("api/opinionss", angular.copy(mutuService.getOpinions()))
         .success(function (data) {
           $log.log(data);
-          console.log('Dodałem opinie ', data)
+          console.log('Opinion was send ', data)
         }).error(function (data) {
-          console.log(data, 'Can not write to database!');
+          console.log(data, 'Can not write to database, check your internet connection');
         });
       $log.log(mutuService.getOpinions());
     };
 
-  /*
-    funkcja zapisu do obiektu nazwy zajęć i zmiana etapu na 2
-  */
+    /*
+     funkcja zapisu do obiektu nazwy zajęć i zmiana etapu na 2
+     */
     $scope.addLecture = function (myLecture) {
       $scope.step = 2;
       $scope.myOpinion.lecture = myLecture.name + '[' + myLecture.categoryName + ']';
     };
 
     /*
-        wyświetlenie etapu 3
+     wyświetlenie etapu 3
      */
     $scope.addFirstOpinion = function () {
       $scope.step = 3;
     };
 
     /*
-    wyświetlenie zakonczenia ankiety i przesłanie opini do bazy danych
+     wyświetlenie zakonczenia ankiety i przesłanie opini do bazy danych
      */
     $scope.addSecondOpinion = function () {
       $scope.step = 'end';
