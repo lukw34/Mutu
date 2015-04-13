@@ -80,6 +80,10 @@ angular.module('myMutuApp')
         this.categoryName = categoryName;
       }
 
+      var validateCategory = function (candidate) {
+        return candidate.categoryName === 'wykład' || candidate.categoryName === 'ćwiczenia';
+      };
+
       //funkcja sprawdzajaca czy wystepuja duplikaty
       var checkingDuplicate = function (element, candidate) {
         return element.name == candidate.name && element.categoryName == candidate.categoryName;
@@ -104,7 +108,7 @@ angular.module('myMutuApp')
           }
         }
 
-        if (!duplicatedElement) {
+        if (!duplicatedElement && validateCategory(lecture)) {
           groupLectures.lectures.push(lecture);
         }
 
@@ -159,6 +163,7 @@ angular.module('myMutuApp')
           $scope.disabled = false;
           break;
         }
+        $scope.disabled = true;
       }
     };
 
