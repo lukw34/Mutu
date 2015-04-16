@@ -33,7 +33,7 @@ angular.module('myMutuApp')
         $scope.lectures = data.lectures;
         console.log('List of lecture was downloaded !!', data);
     }).error(function () {
-        //$location.path('/');
+        $location.path('/');
         error("Check your internet connection !!");
       });
 

@@ -1,49 +1,49 @@
-<div class="container">
-  <div ng-show="step == 1">
-    <h2>Krok 1/3</h2>
+<div class="row" ng-show="step == 1">
+  <h2>Krok 1/3</h2>
 
-    <p>Wybierz z poniższej listy takie zajęcia, które osobiście, zgdnie z własnym sumieniem, zdecydowanie oceniasz
-      <strong>pozytywnie</strong>:
+  <p>Wybierz z poniższej listy takie zajęcia, które osobiście, zgdnie z własnym sumieniem, zdecydowanie oceniasz
+    <strong>pozytywnie</strong>:
+  </p>
 
-    <p>
+  <ul class="nav nav-pills nav-stacked ">
+    <li ng-repeat="myLecture in lectures">
+      <a href="#" classs="disabled" ng-model="myLecture" ng-click="addLecture(myLecture)">
+        <strong>{{myLecture.name}} [{{myLecture.categoryName}}]</strong>
+      </a>
+    </li>
+  </ul>
+</div>
 
-    <form class="list-group-item-heading" ng-repeat="myLecture in lectures">
-      <button class="lecture-btn" ng-model="myLecture" ng-click="addLecture(myLecture)" class="btn-link">
-        {{myLecture.name}} [{{myLecture.categoryName}}]
-      </button>
-    </form>
-  </div>
+<div class="row" ng-show="step == 2">
+  <h2>Krok 2/3</h2>
 
-  <div class="container" ng-show="step == 2">
-    <h2>Krok 2/3</h2>
-
-    <p>Wybrałeś {{myOpinion.lecture}}. Napisz negatywną - tak, <strong>pozytywną</strong> - opinię o tych
-      zajęciach. Wybrałeś te zajęcia jako pozytywną, więc w poniższym polu musisz skłamać, ale nie czuj się tym
-      skrępowany. Napisz negatywną opinię <strong>tak jakby to była Twoja prawdziwa opinia</strong>:</p>
+  <p>Wybrałeś {{myOpinion.lecture}}. Napisz negatywną - tak, <strong>pozytywną</strong> - opinię o tych
+    zajęciach. Wybrałeś te zajęcia jako pozytywną, więc w poniższym polu musisz skłamać, ale nie czuj się tym
+    skrępowany. Napisz negatywną opinię <strong>tak jakby to była Twoja prawdziwa opinia</strong>:</p>
 
 
-    <textarea type="text" ng-model="myOpinion.firstOpinion" name="firstOpinion" class="form-control"
+    <textarea type="text" autofocus="" ng-model="myOpinion.firstOpinion" name="firstOpinion" class="form-control"
               placeholder="Twoja odpowiedź"></textarea>
-    <button ng-click="addFirstOpinion()" ng-show="myOpinion.firstOpinion.length" type="submit" id="submit"
-            class="btn-success">Zatwierdź
-    </button>
-  </div>
+  <br/>
+  <button ng-click="addFirstOpinion()" ng-show="myOpinion.firstOpinion.length >  5" type="submit" id="submit"
+          class="btn btn-success btn-block">Zatwierdź
+  </button>
+</div>
 
-  <div class="container" ng-show="step == 3">
-    <h2>Krok 3/3</h2>
+<div class="row" ng-show="step == 3">
+  <h2>Krok 3/3</h2>
 
-    <p>Teraz napisz Twoją <strong>autentyczną</strong> opinię o tych samych zajęciach ({{myOpinion.lecture}}):</p>
+  <p>Teraz napisz Twoją <strong>autentyczną</strong> opinię o tych samych zajęciach ({{myOpinion.lecture}}):</p>
 
-    <form ng-submit="addSecondOpinion()">
     <textarea type="text" ng-model="myOpinion.secondOpinion" name="secondOpinion" class="form-control"
               placeholder="Twoja odpowiedź"></textarea>
-      <button ng-show="myOpinion.secondOpinion.length" class="btn-success" ng-click="addSecondOpinion()">Zatwierdź
-      </button>
-    </form>
-  </div>
-
-  <div ng-show="step == 'end' ">
-    <koniec-ankiety></koniec-ankiety>
-  </div>
-
+  <br/>
+  <button ng-click="addSecondOpinion()" ng-show="myOpinion.secondOpinion.length >  5" type="submit" id="submit"
+          class="btn btn-success btn-block">Zatwierdź
+  </button>
 </div>
+
+<div class="row" ng-show="step == 'end' ">
+  <koniec-ankiety></koniec-ankiety>
+</div>
+

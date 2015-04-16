@@ -166,9 +166,12 @@ angular.module('myMutuApp')
     /*
      Funkcja losująca wariant i rozpoczynająca ankiete
      */
-    $scope.startSurvey = function (groupId) {
+    $scope.startSurvey = function () {
       $scope.variantDraw();
-      mutuService.pushTypeAndGroup($scope.myVariant.name, groupId);
+      if($scope.groupId.length == 0) {
+        $scope.groupId = mutuService.getGroupId();
+      }
+      mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
       $location.path('/' + $scope.myVariant.url);
     };
   /*
