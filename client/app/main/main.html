@@ -1,15 +1,15 @@
-<div class="container">
-  <center>
-    <input ng-if = "groups" ng-model="query.groupName" type="text" class="form-control input-lg text-center"
-           placeholder="Aby zacząć podaj swoją grupe dziekańską" ng-keyup="validateGroupName()">
-    <br/>
-    <button ng-if="!disabled" ng-click="startSurvey()"  class="my-button">Rozpocznij
-      Ankiete!!!
-    </button>
-  </center>
-   <br/>
+<input ng-show="groups" autofocus="" ng-model="query.groupName" type="text" class="form-control input-lg text-center"
+       placeholder="Aby zacząć podaj swoją grupe dziekańską" ng-keyup="validateGroupName()">
+<br/>
+<div ng-show="!disabled">
+<button  ng-click="startSurvey(groupId)" class="btn btn-info col-xs-12"><b>Rozpocznij
+  Ankiete!!!</b>
+</button>
+  <br/>
+  <br/>
 </div>
-  <div class="container">
+
+<div>
   <p>Ankieta, którą wypełniasz, jest elementem badań prowadzonych przez nas w dwóch celach:</p>
   <ul>
     <li>pragniemy przetestować możliwość oceny zajęć dydaktycznych w formie swobodnych opinii zamiast obecnie
@@ -33,4 +33,4 @@
     pól
     tekstowych, a jej wypełnienie powinno zająć około 5 minut.</p>
 </div>
-</div>
+

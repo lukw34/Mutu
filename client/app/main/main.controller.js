@@ -13,7 +13,7 @@ angular.module('myMutuApp')
     /*
      Przechowywanie id grupy {String}
      */
-    $scope.groupId = '';
+    $scope.groupId = "";
     /*
      Grupy pobrane z devplanu
      */
@@ -66,10 +66,6 @@ angular.module('myMutuApp')
 
     /*
      Funkcja wysyłajaca id grupy oraz wyodrebnione z $scope.timetable  zajecia z ich typami do bazy danych
-     */
-
-    /*
-     TODO: Rozwązac problem zwiazany z przypisywaniem jednego i tego samego do tablicy lectures
      */
 
     $scope.sendData = function () {
@@ -170,11 +166,17 @@ angular.module('myMutuApp')
     /*
      Funkcja losująca wariant i rozpoczynająca ankiete
      */
-    $scope.startSurvey = function () {
+    $scope.startSurvey = function (groupId) {
       $scope.variantDraw();
-      mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
-      $location.path($scope.myVariant.url);
+      mutuService.pushTypeAndGroup($scope.myVariant.name, groupId);
+      $location.path('/' + $scope.myVariant.url);
     };
+  /*
+  Funkcja wracajaca ankiete do wyboru grup
+  */
+    $scope.restart = function () {
+      $location.path('/');
+    }
 
   }])
 ;

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('myMutuApp')
-  .controller('VariantsCtrlCtrl', ['$log', '$http', '$scope', 'mutuService', function ($log, $http, $scope, mutuService) {
+  .controller('VariantsCtrlCtrl', ['$location', '$log', '$http', '$scope', 'mutuService', function ($location, $log, $http, $scope, mutuService) {
     /*
      Tablica przechowująca  liste zajęć
      */
@@ -13,10 +13,13 @@ angular.module('myMutuApp')
       firstOpinion: "",
       secondOpinion: ""
     };
+
     /*
      zmienna przechowujaca id grupy
      */
     $scope.groupId = mutuService.getGroupId();
+
+
     /*
      zmienna pokazujaca etap na jakim jest nakieta
      */
@@ -29,9 +32,11 @@ angular.module('myMutuApp')
       .success(function (data) {
         $scope.lectures = data.lectures;
         console.log('List of lecture was downloaded !!', data);
-      }).error(function () {
-        alert("Check your internet connection !!");
+    }).error(function () {
+        //$location.path('/');
+        error("Check your internet connection !!");
       });
+
 
     /*
      Funkcja przesyłajaca opinie do bazy danych
@@ -44,8 +49,8 @@ angular.module('myMutuApp')
         }).error(function (data) {
           console.log(data, 'Can not write to database, check your internet connection');
         });
-      $log.log(mutuService.getOpinions());
     };
+
 
     /*
      funkcja zapisu do obiektu nazwy zajęć i zmiana etapu na 2
