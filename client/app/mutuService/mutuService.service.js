@@ -15,6 +15,10 @@ angular.module('myMutuApp')
 
     return {
 
+      getType: function() {
+        return opinion.type;
+      },
+
       getOpinions: function () {
         return opinion;
       },

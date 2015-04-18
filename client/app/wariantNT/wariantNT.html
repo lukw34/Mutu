@@ -1,4 +1,6 @@
+
 <div class="row" ng-show="step == 1">
+
   <h2>Krok 1/3</h2>
 
   <p>Wybierz z poniższej listy takie zajęcia, które osobiście, zgdnie z własnym sumieniem, zdecydowanie oceniasz
@@ -6,14 +8,14 @@
   </p>
 
   <ul class="nav nav-pills nav-stacked ">
-    <li ng-repeat="myLecture in lectures">
+    <li class="fx-fade-down"  ng-repeat="myLecture in lectures">
       <a href="#" classs="disabled" ng-model="myLecture" ng-click="addLecture(myLecture)">
         <strong>{{myLecture.name}} [{{myLecture.categoryName}}]</strong>
       </a>
     </li>
   </ul>
 </div>
-<div class="row" ng-show="step == 2">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 2">
   <h2>Krok 2/3</h2>
 
   <p>Wybrałeś {{myOpinion.lecture}} Napisz swoją opinie na temat tych zajęć: </p>
@@ -22,12 +24,12 @@
               placeholder="Twoja odpowiedź"></textarea>
   <br/>
   <button ng-click="addFirstOpinion()" ng-show="myOpinion.firstOpinion.length >  5" type="submit" id="submit"
-          class="btn btn-success btn-block">Zatwierdź
+          class="btn btn-success btn-block fx-fade-down">Zatwierdź
   </button>
 
 
 </div>
-<div class="row" ng-show="step == 3">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 3">
   <h2>Krok 3/3</h2>
 
   <p>Teraz napisz pozytywną - tak <strong>pozytywną</strong> - opinię o tych samych zajęciach ({{myOpinion.lecture}})
@@ -38,12 +40,12 @@
              placeholder="Twoja odpowiedź"></textarea>
   <br/>
   <button ng-click="addSecondOpinion()" ng-show="myOpinion.secondOpinion.length >  5" type="submit" id="submit"
-          class="btn btn-success btn-block">Zatwierdź
+          class="btn btn-success btn-block fx-fade-down">Zatwierdź
   </button>
 
 </div>
 
-<div class="row" ng-show="step == 'end' ">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 'end' ">
   <koniec-ankiety></koniec-ankiety>
 </div>
 

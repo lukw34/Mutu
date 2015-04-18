@@ -4,7 +4,9 @@ angular.module('myMutuApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate',
+  'ngFx'
 ])
 
    .config(function ($routeProvider, $locationProvider, $httpProvider) {

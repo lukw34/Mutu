@@ -1,14 +1,15 @@
 <input ng-show="groups" autofocus="" ng-model="query.groupName" type="text" class="form-control input-lg text-center"
        placeholder="Aby zacząć podaj swoją grupe dziekańską" ng-keyup="validateGroupName()">
 <br/>
-<div ng-show="!disabled">
-<button  ng-click="startSurvey()" class="btn btn-info btn-block"> <strong>Rozpocznij
-  Ankiete!</strong>
-</button>
+
+<div ng-if="!disabled" class="fx-fade-down">
+  <button ng-click="startSurvey()" class="btn btn-lg btn-info btn-block">Rozpocznij
+    Ankiete!
+  </button>
   <br/>
 </div>
 
-<div>
+<div class="col-lg-6">
   <p>Ankieta, którą wypełniasz, jest elementem badań prowadzonych przez nas w dwóch celach:</p>
   <ul>
     <li>pragniemy przetestować możliwość oceny zajęć dydaktycznych w formie swobodnych opinii zamiast obecnie
@@ -21,7 +22,8 @@
     do podjęcia prób stworzenia nowego systemu oceniania zajęć dydaktycznych - moga na tym skorzystać wszyscy
     studenci,
     a więc także i Ty.</p>
-
+</div>
+<div class="col-lg-6">
   <p>Dlatego prosimy o wypełnienie ankiety dokładnie w taki sposób, jakby to był oficjalny system oceny zajęć. Pisz
     swobodnie, w swoim stylu, nie namyślaj się długo, nie staraj się nadmiernie o obiektywność, używaj takich słów,
     jakie przychodzą Ci na myśl, nie wstydź się wyrażać pochlebinie lub krytycznie - nawet możesz napisać opinie

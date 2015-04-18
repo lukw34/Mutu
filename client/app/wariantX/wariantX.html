@@ -5,14 +5,14 @@
     lub ich nie pamiętasz:
   </p>
   <ul class="nav nav-pills nav-stacked ">
-    <li ng-repeat="myLecture in lectures">
-      <a href="#" classs="disabled" ng-model="myLecture" ng-click="addLecture(myLecture)">
+    <li class="fx-fade-down" ng-repeat="myLecture in lectures">
+      <a href="#"  ng-model="myLecture" ng-click="addLecture(myLecture)">
         <strong>{{myLecture.name}} [{{myLecture.categoryName}}]</strong>
       </a>
     </li>
   </ul>
 </div>
-<div class="row" ng-show="step == 2">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 2">
   <h2>Krok 2/3</h2>
 
   <p>Wybrałeś {{myOpinion.lecture}}. Napisz <strong>negatywną</strong> opinię o tych zajęciach.
@@ -25,10 +25,10 @@
               placeholder="Twoja odpowiedź"></textarea>
   <br/>
   <button ng-click="addFirstOpinion()" ng-show="myOpinion.firstOpinion.length >  5" type="submit" id="submit"
-          class="btn btn-success btn-block">Zatwierdź
+          class="btn btn-success btn-block fx-fade-down">Zatwierdź
   </button>
 </div>
-<div class="row" ng-show="step == 3">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 3">
   <h2>Krok 3/3</h2>
 
   <p>Teraz napisz <strong>pozytywną</strong> opinię o tych samych zajęciach ({{myOpinion.lecture}}). Tę opinię także
@@ -39,11 +39,11 @@
               placeholder="Twoja odpowiedź"></textarea>
   <br/>
   <button ng-click="addSecondOpinion()" ng-show="myOpinion.secondOpinion.length >  5" type="submit" id="submit"
-          class="btn btn-success btn-block">Zatwierdź
+          class="btn btn-success btn-block fx-fade-down">Zatwierdź
   </button>
 </div>
 
-<div class="row" ng-show="step == 'end' ">
+<div class="row fx-fade-right fx-speed-350" ng-show="step == 'end' ">
   <koniec-ankiety></koniec-ankiety>
 </div>
 

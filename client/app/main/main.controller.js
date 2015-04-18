@@ -45,11 +45,11 @@ angular.module('myMutuApp')
      Losowanie wariantu
      */
     $scope.variantDraw = function () {
-      $scope.myrandom = Math.floor(Math.random() * 4);
-      $scope.variant = {
-        name: $scope.links[$scope.myrandom].name,
-        url: $scope.links[$scope.myrandom].url
-      };
+        $scope.myrandom = Math.floor(Math.random() * 4);
+        $scope.variant = {
+          name: $scope.links[$scope.myrandom].name,
+          url: $scope.links[$scope.myrandom].url
+        };
       $scope.myVariant = $scope.variant;
     };
 
@@ -174,12 +174,7 @@ angular.module('myMutuApp')
       mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
       $location.path('/' + $scope.myVariant.url);
     };
-  /*
-  Funkcja wracajaca ankiete do wyboru grup
-  */
-    $scope.restart = function () {
-      $location.path('/');
-    }
+
 
   }])
 ;
