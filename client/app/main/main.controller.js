@@ -171,6 +171,9 @@ angular.module('myMutuApp')
       if($scope.groupId.length == 0) {
         $scope.groupId = mutuService.getGroupId();
       }
+      if (mutuService.getType() == $scope.myVariant.name) {
+        $scope.startSurvey();
+      }
       mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
       $location.path('/' + $scope.myVariant.url);
     };

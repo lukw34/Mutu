@@ -12,6 +12,8 @@
     </li>
   </ul>
 </div>
+<br/>
+<br/>
 <div class="row fx-fade-right fx-speed-350" ng-show="step == 2">
   <h2>Krok 2/3</h2>
 
@@ -35,7 +37,7 @@
     musisz zmyślić,
     podobnie jak poprzednią. Napisz pozytywną opinię <strong>tak, jakby to była Twoja prawdziwa opinia</strong>:</p>
 
-    <textarea type="text" ng-model="myOpinion.secondOpinion" name="secondOpinion" class="form-control"
+    <textarea type="text"  ng-model="myOpinion.secondOpinion" name="secondOpinion" class="form-control"
               placeholder="Twoja odpowiedź"></textarea>
   <br/>
   <button ng-click="addSecondOpinion()" ng-show="myOpinion.secondOpinion.length >  5" type="submit" id="submit"

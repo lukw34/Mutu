@@ -7,6 +7,7 @@ var Opinions = require('./opinions.model');
 exports.index = function(req, res) {
   Opinions.find(function (err, opinionss) {
     if(err) { return handleError(res, err); }
+    res.charset = 'utf-8'
     return res.json(200, opinionss);
   });
 };

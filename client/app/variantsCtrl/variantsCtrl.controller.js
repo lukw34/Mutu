@@ -64,13 +64,14 @@ angular.module('myMutuApp')
      wyświetlenie etapu 3
      */
     $scope.addFirstOpinion = function () {
-      $scope.step = 3;
+       $scope.step = 3;
     };
 
     /*
      wyświetlenie zakonczenia ankiety i przesłanie opini do bazy danych
      */
     $scope.addSecondOpinion = function () {
+
       $scope.step = 'end';
       mutuService.pushOpinion($scope.myOpinion.lecture, $scope.myOpinion.firstOpinion, $scope.myOpinion.secondOpinion);
       $scope.addOpinions();
