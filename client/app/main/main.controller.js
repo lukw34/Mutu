@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myMutuApp')
-  .controller('MutuCtrl', ['$log', '$http', '$scope', '$location', 'mutuService', function ($log, $http, $scope, $location, mutuService) {
+  .controller('MutuCtrl', ['$log', '$http', '$scope', '$location', 'validationServie' ,'mutuService', function ($log, $http, $scope, $location,validationServie, mutuService) {
     /*
      zapytanie do bazy danych
      */
@@ -65,75 +65,6 @@ angular.module('myMutuApp')
       });
 
     /*
-     Funkcja wysyłajaca id grupy oraz wyodrebnione z $scope.timetable  zajecia z ich typami do bazy danych
-     */
-
-    $scope.sendData = function () {
-
-      //konstruktor do obiektu zawierajacego zajecia i ich typ
-      function Lecture(name, categoryName) {
-        this.name = name;
-        this.categoryName = categoryName;
-      }
-
-      var validateCategory = function (candidate) {
-        return candidate.categoryName === 'wykład' || candidate.categoryName === 'ćwiczenia';
-      };
-
-      //funkcja sprawdzajaca czy wystepuja duplikaty
-      var checkingDuplicate = function (element, candidate) {
-        return element.name == candidate.name && element.categoryName == candidate.categoryName;
-      };
-
-      var duplicatedElement;
-
-      //Pusty obiekt zawierajacy dane ktore powinny zostac przezlłane do bazy danych
-      var groupLectures = {
-        _id: '',
-        lectures: []
-      };
-      var lecture;
-
-      for (var i = 0; i < $scope.timetable.length; i++) {
-        duplicatedElement = false;
-        lecture = new Lecture($scope.timetable[i].name, $scope.timetable[i].category_name);
-
-        for(var j = 0; j < groupLectures.lectures.length; j ++) {
-          if (checkingDuplicate(groupLectures.lectures[j], lecture)) {
-            duplicatedElement = true;
-          }
-        }
-
-        if (!duplicatedElement && validateCategory(lecture)) {
-          groupLectures.lectures.push(lecture);
-        }
-
-      }
-      /*
-      Dodanie lektoratów z  języka nagielskiego
-       */
-      var angLecture = {
-        name: 'Język Angielski',
-        categoryName: 'lektorat'
-      };
-      groupLectures.lectures.push(angLecture);
-
-      groupLectures._id = $scope.groupId;
-
-      $scope.groupLectures = groupLectures;
-
-      //wysyłanie danych do bazy dany
-      $http.post('api/lectures', angular.copy(groupLectures))
-        .success(function (data) {
-          $log.log(data);
-          data._id = $scope.groupId;
-          console.log('Lectures was send: ', data);
-        }).error(function () {
-          console.log('Can not send lectures or they are in DB');
-        });
-    };
-
-    /*
      Funkcja pobierajaca plan grupy przy uzyciu id
      */
     $scope.getTimetable = function (id) {
@@ -141,7 +72,7 @@ angular.module('myMutuApp')
         .success(function (data) {
           $scope.timetable = data.activities;
           console.log('Timetable was downloaded', data);
-          $scope.sendData();
+          validationServie.validateAndSendGroup($scope.groupId, $scope.timetable, $http, $log);
         }).error(function () {
           alert('Check your internet connection and refresh page.');
         });
