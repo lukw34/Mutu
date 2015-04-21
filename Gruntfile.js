@@ -357,6 +357,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             'package.json',
+            'processes.json',
             'server/**/*'
           ]
         }]
@@ -381,6 +382,12 @@ module.exports = function (grunt) {
         options: {
           remote: 'heroku',
           branch: 'master'
+        }
+      },
+      master: {
+        options: {
+          remote:'ssh://git@git.dev.uek.krakow.pl:12022/lukw34/Mutu.git',
+          branch: 'dist'
         }
       },
       openshift: {

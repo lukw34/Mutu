@@ -23,7 +23,7 @@ describe('Service connect two controllers', function () {
 
     var groupId = mutuService.getGroupId();
 
-    expect(groupId).toEqual('125')
+    expect(groupId).toEqual('12500')
 
   });
 

@@ -1,0 +1,9 @@
+{
+  "name": "projec_mutu",
+  "scrip": "/server/app.js",
+  "watch": "./",
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": 9017
+  }
+}

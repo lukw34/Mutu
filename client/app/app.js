@@ -5,8 +5,9 @@ angular.module('myMutuApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngAnimate',
-  'ngFx'
+  'ngFx',
+  'ngAnimate'
+
 ])
 
    .config(function ($routeProvider, $locationProvider, $httpProvider) {
