@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: mutuService', function () {
+describe('Service connect two controllers', function () {
 
   // load the service's module
   beforeEach(module('myMutuApp'));
@@ -11,8 +11,20 @@ describe('Service: mutuService', function () {
     mutuService = _mutuService_;
   }));
 
-  it('should do something', function () {
-    expect(!!mutuService).toBe(true);
+  it('Should update opinions', function () {
+    mutuService.pushTypeAndGroup('WariantNT', '125');
+    mutuService.pushOpinion('matematyka', 'słaba', 'dobra');
+    var opinion = mutuService.getOpinion();
+
+    expect(opinion.type).toEqual('WaraintNT');
+    expect(opinion.lecture).toEqual('matematyka');
+    expect(opinion.firstOpinion).toEqual('słaba');
+    expect(opinion.secondOpinion).toEqual('dobra');
+
+    var groupId = mutuService.getGroupId();
+
+    expect(groupId).toEqual('125')
+
   });
 
 });

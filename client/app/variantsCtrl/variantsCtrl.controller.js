@@ -9,9 +9,9 @@ angular.module('myMutuApp')
      Opiekt przechowujący opinie
      */
     $scope.myOpinion = {
-      lecture: "",
-      firstOpinion: "",
-      secondOpinion: ""
+      lecture: '',
+      firstOpinion: '',
+      secondOpinion: ''
     };
 
     /*
@@ -34,7 +34,7 @@ angular.module('myMutuApp')
         console.log('List of lecture was downloaded !!', data);
     }).error(function () {
         $location.path('/');
-        error("Check your internet connection !!");
+        alert('Check your internet connection !!');
       });
 
 
@@ -42,12 +42,12 @@ angular.module('myMutuApp')
      Funkcja przesyłajaca opinie do bazy danych
      */
     $scope.addOpinions = function () {
-      $http.post("api/opinionss", angular.copy(mutuService.getOpinions()))
+      $http.post('api/opinionss', angular.copy(mutuService.getOpinion()))
         .success(function (data) {
           $log.log(data);
-          console.log('Opinion was send ', data)
+          console.log('Opinion was send ', data);
         }).error(function (data) {
-          console.log(data, 'Can not write to database, check your internet connection');
+          console.log(data, 'Problem with load group');
         });
     };
 

@@ -5,10 +5,10 @@ MutuService connect variantsCtrl and main.controller
 angular.module('myMutuApp')
   .service('mutuService', function () {
     var opinion = {
-      type:"",
-      lecture:"",
-      firstOpinion:"",
-      secondOpinion:""
+      type:'',
+      lecture:'',
+      firstOpinion:'',
+      secondOpinion:''
     };
 
     var groupId;
@@ -19,7 +19,7 @@ angular.module('myMutuApp')
         return opinion.type;
       },
 
-      getOpinions: function () {
+      getOpinion: function () {
         return opinion;
       },
 

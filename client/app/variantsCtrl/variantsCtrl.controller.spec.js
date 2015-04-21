@@ -15,8 +15,12 @@ describe('Controller: VariantsCtrlCtrl', function () {
     });
   }));
 
-  it('sho.', function () {
-    expect(1).toEqual(1);
+  it('should change step', function ($scope) {
+    $scope.step = 2;
+    $scope.addFirstOpinion();
+    expect($scope.step).toEqual(56);
+    $scope.addSecondOpinion();
+    expect($scope.step).toEqual('end');
   });
 
 });

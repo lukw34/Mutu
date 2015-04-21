@@ -27,7 +27,7 @@ angular.module('myMutuApp')
 
       //funkcja sprawdzajaca czy wystepuja duplikaty
       var checkingDuplicate = function (element, candidate) {
-        return element.name == candidate.name && element.categoryName == candidate.categoryName;
+        return element.name === candidate.name && element.categoryName ===candidate.categoryName;
       };
 
 

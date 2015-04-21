@@ -13,7 +13,7 @@ angular.module('myMutuApp')
     /*
      Przechowywanie id grupy {String}
      */
-    $scope.groupId = "";
+    $scope.groupId = '';
     /*
      Grupy pobrane z devplanu
      */
@@ -45,7 +45,7 @@ angular.module('myMutuApp')
      Losowanie wariantu
      */
     $scope.variantDraw = function () {
-        $scope.myrandom = Math.floor(Math.random() * 4);
+        $scope.myrandom = Math.floor(Math.random() * 5);
         $scope.variant = {
           name: $scope.links[$scope.myrandom].name,
           url: $scope.links[$scope.myrandom].url
@@ -83,7 +83,7 @@ angular.module('myMutuApp')
      */
     $scope.validateGroupName = function () {
       for (var i = 0; i < $scope.groups.length; i++) {
-        if ($scope.groups[i].name.toLowerCase() == $scope.query.groupName.toLowerCase()) {
+        if ($scope.groups[i].name.toLowerCase() === $scope.query.groupName.toLowerCase()) {
           console.log($scope.groups[i].id);
           $scope.groupId = $scope.groups[i].id;
           $scope.getTimetable($scope.groups[i].id);
@@ -99,10 +99,10 @@ angular.module('myMutuApp')
      */
     $scope.startSurvey = function () {
       $scope.variantDraw();
-      if($scope.groupId.length == 0) {
+      if($scope.groupId.length === 0) {
         $scope.groupId = mutuService.getGroupId();
       }
-      if (mutuService.getType() == $scope.myVariant.name) {
+      if (mutuService.getType() === $scope.myVariant.name) {
         $scope.startSurvey();
       }
       mutuService.pushTypeAndGroup($scope.myVariant.name, $scope.groupId);
