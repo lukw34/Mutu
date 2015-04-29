@@ -74,6 +74,11 @@ angular.module('myMutuApp')
         groupLectures._id = groupId;
         validate(timetable);
         sendData($http, $log);
+
+        groupLectures = {
+          _id: '',
+          lectures: []
+        };
     }
 
     };

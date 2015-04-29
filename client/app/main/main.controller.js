@@ -61,7 +61,7 @@ angular.module('myMutuApp')
         $scope.groups = data;
         console.log('Group was downloaded.', data);
       }).error(function () {
-        alert('Check your internet connection');
+        alert('Nie moge pobrać grup');
       });
 
     /*
@@ -74,7 +74,7 @@ angular.module('myMutuApp')
           console.log('Timetable was downloaded', data);
           validationServie.validateAndSendGroup($scope.groupId, $scope.timetable, $http, $log);
         }).error(function () {
-          alert('Check your internet connection and refresh page.');
+          alert('Problem z pobraniem listy zajec.');
         });
     };
 
