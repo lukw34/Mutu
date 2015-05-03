@@ -7,6 +7,7 @@ var OpinionsSchema = new Schema({
   type: String,
   lecture: String,
   firstOpinion: String,
-  secondOpinion: String
+  secondOpinion: String,
+  addingDate: {type: Date, default: Date.now}
 });
 module.exports = mongoose.model('Opinions', OpinionsSchema);

@@ -386,7 +386,7 @@ module.exports = function (grunt) {
       },
       master: {
         options: {
-          remote:'ssh://git@git.dev.uek.krakow.pl:12022/lukw34/Mutu.git',
+          remote:'http://git.dev.uek.krakow.pl/lukw34/Mutu.git',
           branch: 'dist'
         }
       },
