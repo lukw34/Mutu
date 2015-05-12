@@ -1,6 +1,6 @@
 {
-  "name": "projec_mutu",
-  "scrip": "/server/app.js",
+  "name": "project_mutu",
+  "script": "./server/app.js",
   "watch": "./",
   "env": {
     "NODE_ENV": "production",

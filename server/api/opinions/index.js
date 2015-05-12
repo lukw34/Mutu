@@ -1,6 +1,8 @@
 'use strict';
 
-var express = require('express');
+var express = require('express')
+  , cors = require('cors')
+  , app = express();
 var controller = require('./opinions.controller');
 
 var router = express.Router();

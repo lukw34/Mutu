@@ -20,10 +20,12 @@
     "morgan": "~1.0.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "serve-favicon": "~2.0.1"
+    "serve-favicon": "~2.0.1",
+    "wc-cors": "0.0.1"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",
+    "cors": "^2.6.0",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
     "grunt-asset-injector": "^0.1.0",
