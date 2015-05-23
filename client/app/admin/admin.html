@@ -1,0 +1,93 @@
+<div ng-hide="access">
+  <div >
+    <a class="btn btn-info btn-block center-block" href="/">Powrót <<</a>
+    <br/>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+      <label class="control-label">Podaj hasło</label>
+    </div>
+    <div class="col-lg-8">
+      <input type="password" class="form-control" id="exampleInputPassword1" ng-model="password" placeholder="Wpisz hasło">
+      <div ng-if="try" class="alert alert-danger">
+        <span  class="glyphicon glyphicon-exclamation-sign"></span>
+        Błędne hasło !!!
+      </div>
+      <button class="btn btn-success btn-block" ng-click="getAccess()">Uzyskaj dostęp</button>
+    </div>
+  </div>
+</div>
+
+<div ng-show="access">
+  <h1><span class="label label-warning label-block center-block">Addmin mode</span></h1>
+  <br/>
+  <a class="btn btn-info btn-block" href="/">Powrót <- </a>
+  <h4>Wybierz dane do wyswietlenia:</h4>
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="#" ng-click="opinionsToShow = allOpinions">Wszystkie<span class="badge">{{allOpinions.length}}</span></a>
+    </li>
+    <li>
+      <a href="#" ng-click="opinionsToShow = wariantNT">Wariant NT<span class="badge">{{wariantNT.length}}</span></a>
+    </li>
+    <li>
+      <a href="#" ng-click="opinionsToShow = wariantNF">Wariant NF<span class="badge">{{wariantNF.length}}</span></a>
+    </li>
+    <li>
+      <a href="#" ng-click="opinionsToShow = wariantPF">Wariant PF<span class="badge">{{wariantPF.length}}</span></a>
+    </li>
+    <li>
+      <a href="#" ng-click="opinionsToShow = wariantPT">Wariant PT<span class="badge">{{wariantPT.length}}</span></a>
+    </li>
+    <li>
+      <a href="#" ng-click="opinionsToShow = wariantX">Wariant X<span class="badge">{{wariantX.length}}</span></a>
+    </li>
+  </ul>
+  <div class="fx-fade-down fx-speed-600" ng-repeat="opinion in opinionsToShow">
+    <div class="col-lg-12">
+      <h3><span ng-if="opinion.opinionKind === 'pozytywna'"
+                class="label label-block label-success center-block ">Opinia {{opinion.opinionKind}} o <b>{{opinion.lecture}}</b> </span>
+      </h3>
+      <h3><span ng-if="opinion.opinionKind === 'negatywna'" class="label label-block label-danger center-block ">Opinia {{opinion.opinionKind}} o <b>{{opinion.lecture}}</b> </span>
+      </h3>
+      <h3><span ng-if="opinion.opinionKind === 'zmyślona'" class="label label-block label-default center-block ">Opinia {{opinion.opinionKind}} o <b>{{opinion.lecture}}</b> </span>
+      </h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div ng-if="opinion.firstOpinion.bool">
+          <div class="panel panel-success">
+            <div class="panel-heading">Opinia prawdziwa</div>
+            <div class="panel-body">{{opinion.firstOpinion.txt}}</div>
+          </div>
+        </div>
+        <div ng-if="!opinion.firstOpinion.bool">
+          <div class="panel panel-danger">
+            <div class="panel-heading">Opinia fałszywa</div>
+            <div class="panel-body">{{opinion.secondOpinion.txt}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div ng-if="opinion.secondOpinion.bool">
+          <div class="panel panel-success">
+            <div class="panel-heading">Opinia prawdziwa</div>
+            <div class="panel-body">{{opinion.firstOpinion.txt}}</div>
+          </div>
+        </div>
+        <div ng-if="!opinion.secondOpinion.bool">
+          <div class="panel panel-danger">
+            <div class="panel-heading">Opinia fałszywa</div>
+            <div class="panel-body">{{opinion.secondOpinion.txt}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+  </div>
+</div>
+
+
+
+
+

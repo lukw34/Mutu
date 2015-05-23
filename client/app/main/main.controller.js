@@ -109,6 +109,10 @@ angular.module('myMutuApp')
       $location.path('/' + $scope.myVariant.url);
     };
 
+    $scope.adminMode = function() {
+      $location.path('/admin');
+    }
+
 
   }])
 ;

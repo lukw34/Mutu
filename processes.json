@@ -1,5 +1,5 @@
 {
-  "name": "project_mutu",
+  "name": "projec_mutu",
   "script": "./server/app.js",
   "watch": "./",
   "env": {
